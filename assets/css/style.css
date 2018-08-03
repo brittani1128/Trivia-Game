@@ -1,34 +1,93 @@
 body {
-    background:url("../images/got1.jpg");
+    background:url("../images/got1.jpg");    
 }
 
-h3 {
+h2 {
     color:white;
     font-family: 'Cinzel', serif;
     font-weight:bold;
+    margin-top:30px;   
+}
+
+#start {
+    color:white;
+    font-family:'Cinzel', serif;
+    font-size:30px;
+    letter-spacing:3px;
+    font-weight:700;
+    border:2px solid #ddd;
+    padding:20px;
+    max-width:35%;
+    margin:auto;
+    background-color:#1d1f2d;
+}
+
+#start:hover{
+    background: rgba(0,0,0,0);
+    box-shadow: inset 0 0 0 3px #1d1f2d;
 }
 
 #timer {
-    color:white;
+    color:black;
+    background:#c3be8b;
+    width:25%;
+    margin:auto;
+    padding-top:20px;
+    padding-bottom:20px;
+    border:1px solid #ddd;
+    box-shadow: inset 0 0 0 3px #1d1f2d; 
 }
 
 .jumbotron {
-    opacity:0.7;
+    background: rgba(0,0,0,0.1);
     font-family: 'Cinzel', serif;
-    font-weight:bold;
+    font-weight:700;
+    font-size:70px;
+    letter-spacing:7px;
+    color:#ffdd72;
 }
 
 .answers {
+    
+    max-width:60%;
+    margin:auto;
+    color:white;
+
+}
+
+.list-group-item {
+    background-color:#3e494c;
+    margin-top:10px;
+    margin-bottom:10px;
+    padding-bottom:15px;
+    padding-top:15px;
+}
+
+.answer {
+    font-size:20px;
     font-family: 'Cinzel', serif;
+    font-weight:700;  
+}
+
+li:hover{
+    background: rgba(0,0,0,0);
+    color: white;
+    box-shadow: inset 0 0 0 3px #1d1f2d;
+    /* 646a6a */
 }
 
 #timer {
     font-family: 'Cinzel', serif;
-    font-size:20px;
-   
+    font-size:20px;  
 }
 
 #result {
     color:white;
+    font-size:24px;
+    font-weight:700;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-bottom:30px;
+    /* border:1px solid white; */
+    height:1.5em;
 }
 

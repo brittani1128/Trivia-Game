@@ -1,3 +1,9 @@
+//CURRENT BUGS
+
+//allows player to continue clicking answer choice during interval wait period, speeds up clock
+//when questions run out how to display game over page
+
+
 $(document).ready(function(){
 
 //VARIABLES ============================================================
@@ -5,7 +11,8 @@ var questionsWrong = 0;
 var questionsRight = 0;
 var playerChoice;
 var questionCounter = 0;
-var pause = false;
+var count = 2;
+var clockRunning = false;
 //Array to hold question object
 var questions = [
     {
@@ -110,98 +117,121 @@ var questions = [
     },
 
 ];
+var timer;
 
 
+//FUNCTIONS ===============================================================
 
-//loop through each question
-//  display question and answers
-//  start countdown timer (function)
-//      on click of answer: (function)
-//          if answer correct, in #result div display "Correct! 
-//              replace #answers html with image/gif
-//              questionsRight++
-//          else if answer incorrect, in #result div display "Nope! The correct answer is: " + correctAnswer
-//              replace #answers html with image/gif
-//              questionsWrong++
-//          else if timeRemaining = 0, in #result div display "Your time is up! The answer is: " + correctAnswer
-//              replace #answers html with image/gif
-//              questionsWrong++
-//          after 5 seconds, go to next question (setTimeout?)
-//end for loop
-
-//after all questions are finished, display results "You missed " + questionsWrong + " questions!" 
-//startOver (function)
-
-//FUNCTIONS =====================================================================
-var count = 30;
-//Function to start timer
-function timerReset() {
-    
-    var timer = setInterval(function(){
-        $("#timer").html("Time remaining: " + count--);
-        if (count < 0){
-            clearInterval(timer);
-            alert("Time's Up!");
-            return;  
-        } else if (pause === true){
-            clearInterval(timer);
-        }
-    }, 1000);
+function startQuiz() {
+    $(".game").hide();
+    $("#start").show();
+    $("#start").on("click", function(){
+        $(".game").show();
+        $("#start").hide();
+        updateDisplay();
+    });
 }
 
-timerReset();
+//Function to start timer
+function timerReset() {
+    count = 2;
+    //If clock not running, start clock and count down
+    if (!clockRunning) {
+    timer = setInterval(function(){
+        $("#timer").html("Time remaining: " + count--);
+        clockRunning = true;
+
+        //When count gets to 0, stop clock 
+        if (count < 0){
+            clearInterval(timer);
+            clockRunning = false;
+            $("#result").text("Time's up! The correct answer is " + questions[questionCounter].correctAnswer); 
+            questionsWrong++;
+            questionCounter++;
+            console.log("Question count: " + questionCounter);
+            console.log("Right: " + questionsRight + " | Wrong: " + questionsWrong); 
+            
+            //Wait 4 seconds before moving to next question
+            setTimeout(function(){
+                updateDisplay();
+            }, 2000);
+        }           
+    }, 1000);
+}
+}
+
+        
 
 
-
-//Function to display question and answer choices
+//Function to loop through and display question and answer choices
 function updateDisplay(){
-    console.log("test");
+    timerReset();
     for (var i=0; i<questions.length; i++) {
         $("#question").text(questions[questionCounter].question);
         $("#answer-a").text(questions[questionCounter].answers.a);
         $("#answer-b").text(questions[questionCounter].answers.b);
         $("#answer-c").text(questions[questionCounter].answers.c);
         $("#answer-d").text(questions[questionCounter].answers.d);  
-        $("#result").empty();  
+        $("#result").empty();
+        if (questionCounter === questions.length) {
+            gameOver();
+        }
     }  
+}
+
+
+//=====================================================================
+//when questions run out, keep getting error that question is undefined. How do i get the loop to stop when questions done???
+
+//=====================================================================
+
+
+//Function runs when the game is over
+function gameOver() {
+        clearInterval(timer);
+        clockRunning = false;
+        console.log("game over");
+        $('.stats')
+         .html("<h3>Thank you for playing!</h3>" +
+         "<p>Correct: " + questionsRight + "</p>" +
+         "<p>Incorrect: " + questionsWrong + "</p>");
+       $('#game').hide();
+       $('#start').show("<div>Valar Dohaeris</div>");
 
 }
 
 
 
-// only need one click event. set class to all answer divs, when click on that class, $(this). ".....""
 
+//MAIN PROCESS ===========================================================
+
+
+
+startQuiz();
+
+//Click event when an answer choice is clicked
  $(".answer").on("click", function(){
      var playerChoice = $(this).text();
         console.log(playerChoice);
-        pause = true;
+        clearInterval(timer);
+        clockRunning = false;
+
         if (playerChoice === questions[questionCounter].correctAnswer){
-            $("#result").text("Correct!");
+            $("#result").text("CORRECT!");
             questionsRight++;
-            questionCounter++;
-            // count = 30;
-            // console.log(timer);
-            setTimeout(function(){
-                updateDisplay();
-            }, 5000); 
-            // timerReset();
             
         } else {
             $("#result").text("Nope! The correct answer is " + questions[questionCounter].correctAnswer); 
-            questionsWrong++;
-            questionCounter++;
-            clearInterval(timer);
-            setTimeout(function(){
-                updateDisplay();
-            }, 5000);
-            // timerReset();
+            questionsWrong++;       
         }
+
+        questionCounter++;
+        console.log("Question count: " + questionCounter);
+        console.log("Right: " + questionsRight + " | Wrong: " + questionsWrong); 
+        setTimeout(function(){
+            updateDisplay();
+        }, 2000);
  });
-
-updateDisplay();
-
-
-
 
 
 
