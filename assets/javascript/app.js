@@ -1,7 +1,12 @@
-//CURRENT BUGS
+//CURRENT BUGS ======================
 
 //allows player to continue clicking answer choice during interval wait period, speeds up clock
 //when questions run out how to display game over page
+
+//EXTRAS TO ADD =======================
+
+//photo/gif in place of result
+//music?
 
 
 $(document).ready(function(){
@@ -9,10 +14,11 @@ $(document).ready(function(){
 //VARIABLES ============================================================
 var questionsWrong = 0;
 var questionsRight = 0;
-var playerChoice;
 var questionCounter = 0;
 var count = 2;
 var clockRunning = false;
+var timer;
+
 //Array to hold question object
 var questions = [
     {
@@ -117,11 +123,13 @@ var questions = [
     },
 
 ];
-var timer;
+
 
 
 //FUNCTIONS ===============================================================
 
+
+//Function to display start screen
 function startQuiz() {
     $(".game").hide();
     $("#start").show();
@@ -131,6 +139,7 @@ function startQuiz() {
         updateDisplay();
     });
 }
+
 
 //Function to start timer
 function timerReset() {
@@ -160,9 +169,7 @@ function timerReset() {
 }
 }
 
-        
-
-
+    
 //Function to loop through and display question and answer choices
 function updateDisplay(){
     timerReset();
@@ -206,8 +213,8 @@ function gameOver() {
 //MAIN PROCESS ===========================================================
 
 
-
 startQuiz();
+
 
 //Click event when an answer choice is clicked
  $(".answer").on("click", function(){
@@ -232,11 +239,6 @@ startQuiz();
             updateDisplay();
         }, 2000);
  });
-
-
-
-
-
 
 
 
