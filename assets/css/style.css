@@ -100,4 +100,17 @@ li:hover{
 
 #image-holder {
     margin:auto;
+    border:1px white;
+    
+}
+
+img {
+    border:8px solid #1d1f2d;
+    
+}
+
+p  {
+    font-size: 20px;
+    font-family: 'Cinzel', serif;;
+    font-weight:700;
 }

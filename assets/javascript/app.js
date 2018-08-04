@@ -1,12 +1,4 @@
-//CURRENT BUGS ======================
 
-
-//when questions run out how to display game over page
-
-//EXTRAS TO ADD =======================
-
-//photo/gif in place of result
-//music?
 
 
 $(document).ready(function () {
@@ -15,7 +7,7 @@ $(document).ready(function () {
     var questionsWrong = 0;
     var questionsRight = 0;
     var questionCounter = 0;
-    var count = 3;
+    var count = 15;
     var clockRunning = false;
     var timer;
     var gameOverBoolean = false;
@@ -23,110 +15,130 @@ $(document).ready(function () {
     //Array to hold question object
     var questions = [
         {
-            question: "In Westeros, bastards are given a surname based on the region where they’re born. Which of the following is NOT one of the country’s official surnames?",
+            question: "Who was Margaery Tyrell’s first husband?",
             answers: {
-                a: "Hill",
-                b: "Rivers",
-                c: "Rock",
-                d: "Flowers"
+                a: "Stannis Baratheon",
+                b: "Renly Baratheon",
+                c: "Joffrey Baratheon ",
+                d: "Tommen Baratheon"
             },
-            correctAnswer: "Rock"
+            correctAnswer: "Renly Baratheon"
         },
         {
-            question: "Which of the following houses only became one of the Great Houses of Westeros after Aegon Targaryen’s invasion?",
+            question: "What does Tyrion murder his father with?",
             answers: {
-                a: "House Lannister",
-                b: "House Arryn",
-                c: "House Tyrell",
-                d: "House Martell"
+                a: "Mace",
+                b: "Sword",
+                c: "Crossbow",
+                d: "Poison"
             },
-            correctAnswer: "House Tyrell"
+            correctAnswer: "Crossbow"
         },
         {
-            question: "‘The Mountain’ is the nickname for which character?",
+            question: "What is Hodor's real name?",
             answers: {
-                a: "Gregor Clegane",
-                b: "Sandor Clegane",
-                c: "Gerold Clegane",
-                d: "Oberyn Martell"
+                a: "Waif",
+                b: "Wylis",
+                c: "Walder",
+                d: "Willem"
             },
-            correctAnswer: "Gregor Clegane"
+            correctAnswer: "Wylis"
         }
-        //,
-        // {
-        //     question: "Which rival king attempted to take King’s Landing during the Battle of the Blackwater?",
-        //     answers: {
-        //         a: "Balon Greyjoy",
-        //         b: "Stannis Baratheon",
-        //         c: "Robb Stark",
-        //         d: "Renly Baratheon"
-        //     },
-        //     correctAnswer: "Stannis Baratheon"
-        // },
-        // {
-        //     question: "Who was the Mad King’s firstborn son?",
-        //     answers: {
-        //         a: "Aegon Targaryen",
-        //         b: "Aemon Targaryen",
-        //         c: "Rhaegar Targaryen",
-        //         d: "Viserys Targaryen"
-        //     },
-        //     correctAnswer: "Rhaegar Targaryen"
-        // },
-        // {
-        //     question: "Which of these was NOT the name of a Stark direwolf?",
-        //     answers: {
-        //         a: "Lady",
-        //         b: "Winter",
-        //         c: "Shaggydog",
-        //         d: "Grey Wind"
-        //     },
-        //     correctAnswer: "Winter"
-        // },
-        // {
-        //     question: "Who was Margaery Tyrell’s first husband?",
-        //     answers: {
-        //         a: "Stannis Baratheon",
-        //         b: "Tommen Baratheon",
-        //         c: "Renly Baratheon",
-        //         d: "Joffrey Baratheon"
-        //     },
-        //     correctAnswer: "Renly Baratheon"
-        // },
-        // {
-        //     question: "Which house words appear alongside the sigil of House Martell?",
-        //     answers: {
-        //         a: "Growing Strong",
-        //         b: "As High As Honor",
-        //         c: "Ours is the Fury",
-        //         d: "Unbowed, Unbent, Unbroken"
-        //     },
-        //     correctAnswer: "Unbowed, Unbent, Unbroken"
-        // },
-        // {
-        //     question: "Which of the following god(s) are worshipped by the High Sparrow and his followers?",
-        //     answers: {
-        //         a: "The Old Gods",
-        //         b: "The Faith of the Seven",
-        //         c: "The Lord of Light",
-        //         d: "The Drowned God"
-        //     },
-        //     correctAnswer: "The Faith of the Seven"
-        // },
-        // {
-        //     question: "Which house is known for flaying its enemies?",
-        //     answers: {
-        //         a: "House Bolton",
-        //         b: "House Greyjoy",
-        //         c: "House Baelish",
-        //         d: "House Tully"
-        //     },
-        //     correctAnswer: "House Bolton"
-        // }
+        ,
+        {
+            question: "Which rival king attempted to take King’s Landing during the Battle of the Blackwater?",
+            answers: {
+                a: "Balon Greyjoy",
+                b: "Stannis Baratheon",
+                c: "Robb Stark",
+                d: "Renly Baratheon"
+            },
+            correctAnswer: "Stannis Baratheon"
+        },
+        {
+            question: "Who killed Joffrey?",
+            answers: {
+                a: "Tyrion",
+                b: "Sansa",
+                c: "Olenna",
+                d: "Arya"
+            },
+            correctAnswer: "Olenna"
+        },
+        {
+            question: "Which of these was NOT the name of a Stark direwolf?",
+            answers: {
+                a: "Lady",
+                b: "Winter",
+                c: "Shaggydog",
+                d: "Grey Wind"
+            },
+            correctAnswer: "Winter"
+        },
+        {
+            question: "Who created the White Walkers?",
+            answers: {
+                a: "The Night King",
+                b: "The Three-Eyed Raven",
+                c: "The Wights",
+                d: "The Children of the Forest"
+            },
+            correctAnswer: "The Children of the Forest"
+        },
+        {
+            question: "Which house words appear alongside the sigil of House Martell?",
+            answers: {
+                a: "Growing Strong",
+                b: "As High As Honor",
+                c: "Ours is the Fury",
+                d: "Unbowed, Unbent, Unbroken"
+            },
+            correctAnswer: "Unbowed, Unbent, Unbroken"
+        },
+        {
+            question: "Which of the following god(s) are worshipped by the High Sparrow and his followers?",
+            answers: {
+                a: "The Old Gods",
+                b: "The Faith of the Seven",
+                c: "The Lord of Light",
+                d: "The Drowned God"
+            },
+            correctAnswer: "The Faith of the Seven"
+        },
+        {
+            question: "Which house is known for flaying its enemies?",
+            answers: {
+                a: "House Bolton",
+                b: "House Greyjoy",
+                c: "House Baelish",
+                d: "House Tully"
+            },
+            correctAnswer: "House Bolton"
+        },
+        {
+            question: "Which city does Danaerys NOT conquer and liberate the slaves?",
+            answers: {
+                a: "Yunkai",
+                b: "Astapor",
+                c: "Qarth",
+                d: "Mereen"
+            },
+            correctAnswer: "Qarth"
+        },
+        {
+            question: "Who kills Ygritte?",
+            answers: {
+                a: "Olly",
+                b: "Tormund",
+                c: "Ser Alliser Thorne",
+                d: "Jon Snow"
+            },
+            correctAnswer: "Olly"
+        }
 
     ];
 
-    var imageArray = ["assets/images/nymeria.jpg"];
+    var imageArray = ["assets/images/marg.jpg", "assets/images/tyrion.jpg","assets/images/hodor.jpg","assets/images/stannis.jpg","assets/images/olenna.jpg","assets/images/direwolf2.jpg","assets/images/whitewalker.jpg","assets/images/oberyn.jpg","assets/images/sparrow.jpg","assets/images/ramsay.jpg","assets/images/danyslave.jpg","assets/images/ygritte.jpg"];
 
 
     //FUNCTIONS ===============================================================
@@ -149,7 +161,7 @@ $(document).ready(function () {
 
     //Function to start timer
     function timerReset() {
-        count = 3;
+        count = 15;
         //If clock not running, start clock and count down
         if (!clockRunning) {
             timer = setInterval(function () {
@@ -177,7 +189,7 @@ $(document).ready(function () {
                             gameOver();
                         }
 
-                    }, 2000);
+                    }, 4000);
                 }
             }, 1000);
         }
@@ -211,7 +223,7 @@ $(document).ready(function () {
 
     function displayImage() {
         $(".answers").hide();
-        $("#image-holder").html('<img src="' + imageArray[0] + '"width="300px">').show();
+        $("#image-holder").html('<img src="' + imageArray[questionCounter] + '" width="600px" class="center-block img-responsive">').show();
 
 
     }
@@ -225,7 +237,7 @@ $(document).ready(function () {
         $(".game").hide();     
         $("#result").html(""); 
         $("#stats")
-            .html("<h3>Thank you for playing!</h3>" +
+            .html("<h2>Thank you for playing!</h2>" +
                 "<p>Correct: " + questionsRight + "</p>" +
                 "<p>Incorrect: " + questionsWrong + "</p>").show();
         $("#start").text("Valar Dohaeris").show();
@@ -274,7 +286,7 @@ $(document).ready(function () {
                 gameOver();
             }
 
-        }, 2000);
+        }, 4000);
     });
 
 
