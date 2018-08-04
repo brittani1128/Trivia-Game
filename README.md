@@ -7,7 +7,7 @@ In this Game of Thrones series trivia game, the player must answer multiple choi
 [Link](https://brittani1128.github.io/Trivia-Game/)
 
 ## Acknowledgements
-1. Game of Thrones wallpaper [here](https://wall.alphacoders.com/big.php?i=226091)
+1. Game of Thrones wallpaper [here](https://wall.alphacoders.com/big.php?i=226091)  
 2.Memes:
 * https://imgur.com/gallery/83uYeE8
 * https://imgur.com/gallery/z5fcoxX
